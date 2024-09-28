@@ -2,18 +2,12 @@
 <html>
   <head>
     <script type="text/javascript">
-// <![CDATA[
+//BUBBLE TEXT
 var bgcolour="#ffffff"; // background colour
 var fgcolour="#6600cc"; // foreground colour
 var speed=80; // speed of bubbling, lower is faster
 var shades=12; // number of shades of bubble
 
-/****************************
-*    Bubbling Text Effect   *
-*(c)2003-13 mf2fm web-design*
-*  http://www.mf2fm.com/rv  *
-* DON'T EDIT BELOW THIS BOX *
-****************************/
 var bubbcol=new Array();
 var bubbshd;
 var bubbler, bubbtxt;
@@ -71,12 +65,21 @@ function bubbling() {
     else if (Math.random()<7.5/(shades*bubbtxt.length)) bubbchr[i]=1;
   }
 }
-// ]]>
+// ----- BUBBBLE TEXT END
+
 </script>
+<style>
+    a {
+    transition: 0.5s ease;
+    }
+    a:hover {
+    filter: blur(1px);
+    }
+</style>
   </head>
   
   <body>
-  <span id="bubble" style="text-align: center; display: block;">welcome to my space!!</span>
+  <span id="bubble" style="text-align: center; display: block; font-size: 18;">welcome to my space!!</span>
   </body>
   
 </html>
