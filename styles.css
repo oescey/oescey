@@ -3,6 +3,13 @@ body{
 }
 
 
+#rcorners1 {
+  border-radius: 25px;
+  background: lavender;
+  padding: 20px; 
+  width: 200px;
+  height: 150px;  
+}
 
 .spaced-text {
   margin-bottom: 20px;
@@ -14,4 +21,28 @@ body{
 h1 {
   color: lavender;
   text-align: center;
+}
+
+
+/*navigation bar*/
+
+li a{
+  display: block;
+  width: 60px;
+  color: black;
+  padding: 8px 80px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: white;
+  color: lavender;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: lavender;
 }
