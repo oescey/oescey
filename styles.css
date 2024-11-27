@@ -22,7 +22,7 @@
 
 .col3 {
   float: left;
-  width: 25%;
+  width: 3%;
 }
 
 #rcorners1 {
@@ -52,7 +52,7 @@ li a{
   display: block;
   width: 60px;
   color: black;
-  padding: 8px 80px;
+  padding: 8px 20px;
   text-decoration: none;
 }
 
