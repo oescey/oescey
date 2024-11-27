@@ -4,15 +4,14 @@
   clear: both;
 }
 
-.column {
+.col1 {
   float: left;
-  width: 50%;
+  width: 25%;
 }
 
-@media screen and (max-width:600px) {
-  .column {
-    width: 100%;
-  }
+.col2 {
+  float: left;
+  width: 75%;
 }
 
 
