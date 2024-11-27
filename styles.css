@@ -32,7 +32,8 @@
 
 #rcorners1 {
   border-radius: 20px;
-  background: lavender;
+  border-style: dashed;
+  border-width: 1px;
   padding: 0px; 
   width: 200px;
   height: 152px;  
@@ -55,15 +56,16 @@ h1 {
 
 li a{
   display: block;
-  width: 200px;
+  width: 160px;
   color: #785ce4;
   padding: 8px 20px;
   text-decoration: none;
 }
 
 li a:hover {
-  background-color: white;
-  color: lavender;
+  background-color: lavender;
+  color: white;
+  border-radius: 20px;
 }
 
 ul{
@@ -71,5 +73,5 @@ ul{
   margin: 0;
   padding: 0;
   width: 300px;
-  background-color: lavender;
+  background-color: white;
 }
