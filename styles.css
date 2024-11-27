@@ -4,6 +4,12 @@
   clear: both;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .col1 {
   float: left;
   width: 25%;
@@ -14,6 +20,10 @@
   width: 75%;
 }
 
+.col3 {
+  float: left;
+  width: 25%;
+}
 
 #rcorners1 {
   border-radius: 20px;
