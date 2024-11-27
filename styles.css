@@ -1,21 +1,34 @@
-body{
-  
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
 }
 
 
 #rcorners1 {
-  border-radius: 25px;
+  border-radius: 20px;
   background: lavender;
-  padding: 20px; 
-  width: 200px;
-  height: 150px;  
+  padding: 0px; 
+  width: 150px;
+  height: 131px;  
 }
 
 .spaced-text {
   margin-bottom: 20px;
   margin-top: 20px;
   margin-left: 20px;
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 h1 {
