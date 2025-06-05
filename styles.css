@@ -12,12 +12,15 @@
 
 .col1 {
   float: left;
-  width: 25%;
+  width: 20%;
+  background-color: #f5eaff;    
+  border-radius: 50px;
+  padding: 20px 0; 
 }
 
 .col2 {
   float: left;
-  width: 75%;
+  width: 80%;
 }
 
 .col3 {
@@ -36,7 +39,7 @@
   border-width: 1px;
   padding: 0px; 
   width: 200px;
-  height: 152px;  
+  height: 152px; 
 }
 
 .spaced-text {
@@ -74,4 +77,13 @@ ul{
   padding: 0;
   width: 300px;
   background-color: white;
+}
+
+.circle-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ff1d61;
+    box-shadow: 0 2px 8px rgba(120,92,228,0.15);
 }
