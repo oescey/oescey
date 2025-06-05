@@ -13,7 +13,7 @@
 .col1 {
   float: left;
   width: 20%;
-  background-color: #f5eaff;
+  background-color: #ffcddd;
   border-radius: 30%;
   padding: 20px 0;
   display: flex;
@@ -45,7 +45,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;  /* Center the list items inside */
-  background-color: #f5eaff;
+  background-color: #ffcddd;
 }
 
 .spaced-text {
@@ -72,7 +72,7 @@ li a{
 }
 
 li a:hover {
-  background-color: rgb(158, 72, 255);
+  background-color: #ff1d61;
   color: white;
   border-radius: 20px;
 }
