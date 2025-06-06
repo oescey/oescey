@@ -1,3 +1,4 @@
+
 .row::after {
   content: "";
   display: table;
@@ -93,3 +94,62 @@ ul{
     border: 1px solid #ff1d61;
     box-shadow: 0 2px 8px rgba(120,92,228,0.15);
 }
+
+
+/*ui verse social buttons*/
+
+.social-links,.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-btn {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  font-family: 'Titillium Web', sans-serif;
+  color: #333;
+  border-radius: 10px;
+  background: white;
+  margin: 5px;
+  transition: 0.3s;
+  justify-content: center;
+}
+
+.social-btn svg {
+  height: 24px;
+  width: 24px;
+}
+
+.social-btn span {
+  width: 0px;
+  overflow: hidden;
+  transition: 0.3s;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.social-btn:hover {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.social-btn:hover span {
+  padding: 2px;
+  width: 80px;
+}
+
+#twitter svg {
+  fill: #1da1f2;
+}
+
+#steam svg {
+  fill: #0f2277;
+}
+
+#github {
+  fill: #333;
+}
+
+
