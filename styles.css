@@ -1,4 +1,3 @@
-
 .row::after {
   content: "";
   display: table;
@@ -14,7 +13,7 @@
 .col1 {
   float: left;
   width: 20%;
-  background-color: #ffcddd;
+  background-color: #ffd6e1;
   border-radius: 10%;
   padding: 20px 0;
   display: flex;
@@ -38,6 +37,7 @@
 }
 
 #rcorners1 {
+  font-family: monospace;
   border-radius: 20px;
   padding: 0px;
   width: 220px;         /* Make the border box a bit bigger */
@@ -46,7 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;  /* Center the list items inside */
-  background-color: #ffcddd;
+  background-color: #ffd6e1;
 }
 
 .spaced-text {
@@ -67,7 +67,7 @@ h1 {
 li a{
   display: block;
   width: 160px;
-  color: #785ce4;
+  color: #ff1d61;
   padding: 8px 20px;
   text-decoration: none;
 }
@@ -167,5 +167,89 @@ ul{
     100%   { transform: translate(0, -0px); }    
 }
 
+
+
+/*card*/
+
+/* From Uiverse.io by Praashoo7 */ 
+.card {
+  width: 500px;           /* Make card bigger */
+  height: 700px;          /* Make card taller */
+  background: #ffd6e1;
+  transition: 1s ease-in-out;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 40px auto;      /* Center the card horizontally */
+  align-items: center; 
+}
+
+.card span {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  font-size: 1.5em;       /* Make "About Me" bigger */
+}
+
+.card .info {
+  font-weight: 400;
+  color: white;
+  display: block;
+  text-align: center;
+  font-size: 1.1em;       /* Make info text bigger */
+  margin: 1em;
+  font-family: monospace;
+}
+
+.card .img {
+  width: 200px;             /* Make image bigger */
+  height: 200px;
+  background: white;
+  border-radius: 50%;
+  margin: auto;
+  object-fit: cover;
+  border: 1px solid #ff1d61;
+  box-shadow: 0 2px 8px rgba(120,92,228,0.15);
+}
+
+.card .share {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.card .share svg {
+  width: 32px;            /* Make SVG icons bigger */
+  height: 32px;
+}
+
+.card a {
+  color: white;
+  transition: .4s ease-in-out;
+}
+
+.card a:hover {
+  color: #ff1d61;
+}
+
+.card button {
+  padding: 0.8em 1.7em;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  background: #ffffff;
+  color: #ffd6e1;
+  transition: .4s ease-in-out;
+}
+
+.card button:hover {
+  background: #ff1d61;
+  color: white;
+  cursor: pointer;
+}
 
 
