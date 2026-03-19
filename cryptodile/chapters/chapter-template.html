@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title id="chapter-title">Capitolo</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="chapters.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            flex-shrink: 0;
+            order: -1;
+        }
+
+        .layout-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            position: relative;
+            width: 250px;
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+            background: rgba(12,12,16,0.5);
+            border-right: 1px solid rgba(255,255,255,0.03);
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            padding: 0 20px 10px 20px;
+            font-size: 14px;
+            color: #cfd8e2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 10px;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 20px;
+            color: #cbd6df;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255,255,255,0.05);
+            color: #4fc576;
+            border-left-color: #4fc576;
+        }
+
+        .sidebar-nav a.active {
+            background: rgba(124, 95, 165, 0.1);
+            color: #7c5fa5;
+            border-left-color: #7c5fa5;
+            font-weight: 600;
+        }
+
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #7c5fa5;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .main-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            padding: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* mobile */
+        @media (max-width: 768px) {
+            .layout-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -250px;
+                top: 60px;
+                width: 250px;
+                height: calc(100vh - 60px);
+                max-height: none;
+                transition: left 0.3s ease;
+                z-index: 999;
+                border-right: 1px solid rgba(255,255,255,0.1);
+                overflow-y: auto;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+
+        /*subchapters */
+        .subchapter-section {
+            margin: 40px 0;
+            padding: 30px 45px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.03);
+            scroll-margin-top: 80px;
+        }
+
+        .subchapter-section h2 {
+            margin: 0 0 15px 0;
+            color: #e6eef7;
+            font-weight: 300;
+            font-size: 24px;
+        }
+
+        .subchapter-section p {
+            color: #cfd8e2;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 0 0 15px 0;
+        }
+
+        .subchapter-section ul,
+        .subchapter-section ol {
+            margin: 0 0 15px 20px;
+            padding-left: 20px;
+            color: #d8dbe6;
+        }
+
+        .subchapter-section li {
+            margin-bottom: 10px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="../learn.html" class="nav-link active">Learn</a></li>
+            <li class="nav-item"><a href="../test.html" class="nav-link">Test</a></li>
+        </ul>
+    </nav>
+
+    <button class="hamburger" id="hamburger">☰</button>
+
+    <div class="layout-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-title">Sezioni</div>
+            <ul class="sidebar-nav" id="sidebar-nav"></ul>
+        </aside>
+
+        <div class="main-wrapper">
+            <main class="main-content">
+                <p class="back-link"><a href="../learn.html" class="start-button">← Torna alle Lezioni</a></p>
+                <div id="markdown-content"></div>
+            </main>
+        </div>
+    </div>
+
+    <script src="marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script>
+    <script>
+        console.log('Script caricato');
+        let subchapters = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configura marked
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+                headerIds: true,
+                html: true
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const chapter = urlParams.get('ch') || 'intro';
+            const contentPath = `../content/${chapter}.md`;
+            
+            console.log('Caricando capitolo:', chapter);
+            
+            fetch(contentPath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Capitolo non trovato: ${chapter}`);
+                    }
+                    return response.text();
+                })
+                .then(markdownText => {
+                    console.log('Markdown caricato');
+                    
+                    // Estrai i subchapter (## Titolo) prima della conversione
+                    const lines = markdownText.split('\n');
+                    subchapters = [];
+                    
+                    lines.forEach((line) => {
+                        if (line.startsWith('## ')) {
+                            const title = line.replace(/^## /, '').trim();
+                            const id = title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                            subchapters.push({ title, id });
+                        }
+                    });
+
+                    // converti con marked
+                    let html = marked.parse(markdownText); 
+                    
+                    // Converti code blocks in code-ide style (prima quelli con linguaggio)
+                    html = html.replace(/<pre><code class="language-(\w+)">([\s\S]*?)<\/code><\/pre>/g, (match, lang, code) => {
+                        return `___CODE_IDE_START___${lang}___${code}___CODE_IDE_END___`;
+                    });
+                    
+                    // Converti anche code blocks senza linguaggio specificato
+                    html = html.replace(/<pre><code>([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+                        return `___CODE_IDE_START___plain___${code}___CODE_IDE_END___`;
+                    });
+                    
+                    // Ora converti i marker in HTML code-ide
+                    html = html.replace(/___CODE_IDE_START___(\w+)___([\s\S]*?)___CODE_IDE_END___/g, (match, lang, code) => {
+                        const displayLang = lang === 'plain' ? 'Code' : (lang.charAt(0).toUpperCase() + lang.slice(1));
+                        return `
+<div class="code-ide" aria-label="Codice ${displayLang}">
+    <div class="code-header">
+        <span class="dot red" aria-hidden></span>
+        <span class="dot yellow" aria-hidden></span>
+        <span class="dot green" aria-hidden></span>
+        <span class="code-lang">${displayLang}</span>
+    </div>
+    <pre><code>${code}</code></pre>
+</div>`;
+                    });
+
+                    // Inserisci nel dom
+                    document.getElementById('markdown-content').innerHTML = html;
+                    
+                    // Renderizza le formule KaTeX
+                    renderMathInElement(document.getElementById('markdown-content'), {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false}
+                        ],
+                        throwOnError: false
+                    });
+
+                    // Wrappa ogni h2 in una sezione usando dom manipulation
+                    const content = document.getElementById('markdown-content');
+                    const allElements = Array.from(content.children);
+                    
+                    subchapters.forEach(sub => {
+                        // Trova l'h2 corrispondente
+                        const h2 = Array.from(content.querySelectorAll('h2')).find(el => {
+                            const text = el.textContent.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                            return text === sub.id;
+                        });
+                        
+                        if (h2) {
+                            // Crea il wrapper
+                            const wrapper = document.createElement('div');
+                            wrapper.className = 'subchapter-section';
+                            wrapper.id = `section-${sub.id}`;
+                            
+                            // Inserisci il wrapper prima dell'h2
+                            h2.parentNode.insertBefore(wrapper, h2);
+                            
+                            // Sposta h2 nel wrapper
+                            wrapper.appendChild(h2);
+                            
+                            // Sposta tutti gli elementi successivi fino al prossimo h2
+                            let next = wrapper.nextSibling;
+                            while (next && next.tagName !== 'H2') {
+                                const current = next;
+                                next = next.nextSibling;
+                                wrapper.appendChild(current);
+                            }
+                        }
+                    });
+                    
+                    // Popola la sidebar DOPO che il contenuto è renderizzato
+                    console.log('Subchapters trovati:', subchapters);
+                    populateSidebar();
+                    
+                    // Estrai il primo h1 come titolo
+                    const firstH1 = document.querySelector('#markdown-content h1');
+                    if (firstH1) {
+                        document.getElementById('chapter-title').textContent = firstH1.textContent;
+                    }
+                })
+                .catch(error => {
+                    console.error('Errore:', error);
+                    document.getElementById('markdown-content').innerHTML = `
+                        <p style="color: #b8b8c8;">Errore: ${error.message}</p>
+                        <p><a href="../learn.html">Torna alle lezioni</a></p>
+                    `;
+                });
+
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburger');
+            const sidebar = document.getElementById('sidebar');
+            hamburger.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+
+            // Chiudi sidebar quando clicchi un link
+            document.getElementById('sidebar-nav').addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    sidebar.classList.remove('open');
+                }
+            });
+        });
+
+        function populateSidebar() {
+            const nav = document.getElementById('sidebar-nav');
+            nav.innerHTML = '';
+            
+            subchapters.forEach(sub => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#section-${sub.id}`;
+                a.textContent = sub.title;
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log('Scrollando a:', `section-${sub.id}`);
+                    // Scroll al subchapter
+                    const element = document.getElementById(`section-${sub.id}`);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        console.warn('Elemento non trovato:', `section-${sub.id}`);
+                    }
+                    // Aggiorna active state
+                    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    a.classList.add('active');
+                });
+                li.appendChild(a);
+                nav.appendChild(li);
+            });
+
+            // Attiva il primo link
+            if (nav.firstChild) {
+                nav.firstChild.querySelector('a').classList.add('active');
+            }
+        }
+
+        // Aggiorna active state al scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            subchapters.forEach(sub => {
+                const el = document.getElementById(sub.id);
+                if (el && el.offsetTop <= window.scrollY + 100) {
+                    current = sub.id;
+                }
+            });
+
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
